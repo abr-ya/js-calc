@@ -1,9 +1,5 @@
-const options = '1234567890.=*/+-'.split('');
-const special = '.=*/+-'.split('');
-
-const keyClickHandler = (e) => {
-  console.log(e);
-}
+const options = '1234567890.*/+-'.split('');
+const special = '.*/+-'.split('');
 
 const createButton = (text, clickHandler, target) => {
   const btn = document.createElement('button');
@@ -16,7 +12,7 @@ const createButton = (text, clickHandler, target) => {
 }
 
 const init = () => {
-  console.log('ready');
+  console.log('init');
   const root = document.querySelector('#root');
 
   const container = document.createElement('div');
@@ -32,9 +28,34 @@ const init = () => {
   keys.classList.add('keys');
   container.appendChild(keys);
 
+  const keyClickHandler = (e) => {
+    display.style.border = '1px solid black';
+    const val = e.target.value;
+    console.log(val)
+    display.value += val;
+  }
+
+  const calcHandler = () => {
+    console.log('calcHandler');
+    if (display.value) {
+      display.value = eval(display.value);
+    } else {
+      display.style.border = '1px solid red';
+    }
+  }
+  
+  const clearHandler = () => {
+    console.log('clearHandler');
+    display.style.border = '1px solid black';
+    display.value = '';
+  }
+
   options.forEach(opt => {
     createButton(opt, keyClickHandler, keys)
   });
+
+  createButton('=', calcHandler, keys);
+  createButton('C', clearHandler, keys);
 }
 
 window.addEventListener('DOMContentLoaded', init);
