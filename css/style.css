@@ -6,3 +6,19 @@
 body {
   font-family: "Lato", sans-serif;
 }
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.display {
+  width: 100%;
+  line-height: 50px;
+  font-size: 3em;
+  text-align: right;
+}
+
+.keys {
+  width: 100%;
+}
